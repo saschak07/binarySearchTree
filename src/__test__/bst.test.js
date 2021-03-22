@@ -14,3 +14,10 @@ test('insertion and pre-order traversal',() => {
     expect(bst.preOrder(bst.root,[]).map(data=>`${data}`).toString()).
     toBe('12,6,1,0,7,13,19,15')
 })
+test('insertion and post-order traversal',() => {
+    const bst = new BinarySearchTree();
+    const testData = [12,13,6,7,19,15,1,0]
+    testData.forEach(data=>bst.insert(data,bst.root))
+    expect(bst.postOrder(bst.root,[]).map(data=>`${data}`).toString()).
+    toBe('0,1,7,6,15,19,13,12')
+})

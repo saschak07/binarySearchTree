@@ -50,5 +50,18 @@ class BinarySearchTree {
         }
         return result;
     }
+    postOrder(node,result){
+        if(!node){
+            return null
+        }
+        if(node.left){
+            this.postOrder(node.left,result)
+        }
+        if(node.right){
+            this.postOrder(node.right,result)
+        }
+        result.push(node.data)
+        return result;
+    }
 }
 module.exports = BinarySearchTree
