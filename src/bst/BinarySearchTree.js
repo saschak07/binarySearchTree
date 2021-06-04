@@ -63,5 +63,48 @@ class BinarySearchTree {
         result.push(node.data)
         return result;
     }
+    getHeight(node){
+        if(!node){
+            return 0 
+        }
+        return 1 + Math.max(this.getHeight(node.left),this.getHeight(node.right))
+    }
+    getNode(data){
+        if(!data){
+            throw new Error('input data cannot be null')
+        }
+        let currentNode = this.root
+        while(!currentNode.data === data){
+            if(data < currentNode.data){
+                currentNode = currentNode.left
+            }
+            else{
+                currentNode = currentNode.right
+            }
+        }
+        return currentNode
+    }
+    levelOrderTraversal(){
+        let level = 1
+        let traversal = []
+        while(this.getLevel(this.root,traversal,level))
+        {
+            level++
+        }
+        return traversal
+    
+    }
+    getLevel(node, traversal, level){
+        if(!node){
+            return false
+        }
+        if(level === 1){
+            traversal.push(node.data)
+            return true
+        }
+        let left = this.getLevel(node.left,traversal, level-1)
+        let right = this.getLevel(node.right,traversal, level-1)
+        return left || right
+    }
 }
 module.exports = BinarySearchTree
